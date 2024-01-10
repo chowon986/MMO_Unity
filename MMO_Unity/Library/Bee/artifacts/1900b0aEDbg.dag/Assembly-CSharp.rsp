@@ -356,6 +356,7 @@
 "Assets/Scenes/Scripts/Managers/Managers.cs"
 "Assets/Scenes/Scripts/Managers/ResourceManager.cs"
 "Assets/Scenes/Scripts/PlayerController.cs"
+"Assets/Scenes/Scripts/TestCollision.cs"
 -langversion:9.0
 
 /deterministic
