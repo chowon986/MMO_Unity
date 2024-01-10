@@ -8,11 +8,15 @@ public class Managers : MonoBehaviour
     // // 유일한 매니저 가져오기
     static Managers Instance
     {
-        get { return s_Instance; }
+        get { Init(); return s_Instance; }
     }
 
     InputManager _input = new InputManager();
+    ResourceManager _resource = new ResourceManager();
+
     public static InputManager Input { get { return Instance._input; } }
+    public static ResourceManager Resource { get { return Instance._resource; } }
+
 
 
     void Start()
