@@ -7,7 +7,7 @@ using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI; // Text 사용하기 위해 추가함
 
-public class UI_Button : UI_Base
+public class UI_Button : UI_Popup
 {
     enum Buttons
     {
@@ -32,6 +32,13 @@ public class UI_Button : UI_Base
 
     private void Start()
     {
+        Init();
+    }
+
+    public override void Init()
+    {
+        base.Init();
+
         Type buttonsType = typeof(Buttons);
         Bind<Button>(typeof(Buttons));
         Bind<Text>(typeof(Texts));
@@ -42,7 +49,7 @@ public class UI_Button : UI_Base
 
         GameObject go = GetImage((int)Images.ItemIcon).gameObject;
         AddUIEvent(go, (PointerEventData data) => { go.transform.position = data.position; }, Define.UIEvent.Drag);
-     }
+    }
 
     int _score = 0;
 
