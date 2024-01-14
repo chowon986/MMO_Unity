@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI; // Text 사용하기 위해 추가함
 
-public class UI_Button : MonoBehaviour
+public class UI_Button : UI_Base
 {
-    Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();
-
     enum Buttons
     {
         PointButton,
@@ -20,16 +20,14 @@ public class UI_Button : MonoBehaviour
         ScoreText,
     }
 
-    void Bind<T>(Type type) where T : UnityEngine.Object
+    enum GameObjects
     {
-        string[] names = Enum.GetNames(type);
-        UnityEngine.Object[] objects = new UnityEngine.Object[names.Length];
-        _objects.Add(typeof(T), objects);
+        TestObject,
+    }
 
-        for(int i = 0; i < names.Length; i++)
-        {
-            objects[i] = Util.FindChild<T>(gameObject, names[i], true);
-        }
+    enum Images
+    {
+        ItemIcon,
     }
 
     private void Start()
@@ -37,10 +35,23 @@ public class UI_Button : MonoBehaviour
         Type buttonsType = typeof(Buttons);
         Bind<Button>(typeof(Buttons));
         Bind<Text>(typeof(Texts));
-    }
+        Bind<GameObject>(typeof(GameObjects));
+        Bind<Image>(typeof(Images));
 
-    public void OnButtonClicked()
+        GetButton((int)Buttons.PointButton).gameObject.AddUIEvent(OnButtonClicked);
+
+        GameObject go = GetImage((int)Images.ItemIcon).gameObject;
+        AddUIEvent(go, (PointerEventData data) => { go.transform.position = data.position; }, Define.UIEvent.Drag);
+     }
+
+    int _score = 0;
+
+    public void OnButtonClicked(PointerEventData data)
     {
+        _score++;
+
+        GetText((int)Texts.ScoreText).text = $"점수 : {_score}";
+
         // 버튼 누를 때 잘 호출되는지 확인
         // Debug.Log("ButtonClicked");
     }

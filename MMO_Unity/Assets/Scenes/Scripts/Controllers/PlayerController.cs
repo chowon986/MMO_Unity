@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         Managers.Input.MouseAction -= OnMouseClicked;
         Managers.Input.MouseAction += OnMouseClicked;
 
-        Managers.Resource.Instantiate("UI/UIButton");
+        // Managers.Resource.Instantiate("UI/UIButton");
     }
 
     void UpdateDie()

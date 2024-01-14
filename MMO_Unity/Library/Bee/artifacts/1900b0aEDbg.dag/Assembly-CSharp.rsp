@@ -362,8 +362,11 @@
 "Assets/Scenes/Scripts/Managers/InputManager.cs"
 "Assets/Scenes/Scripts/Managers/Managers.cs"
 "Assets/Scenes/Scripts/Managers/ResourceManager.cs"
+"Assets/Scenes/Scripts/UI/UI_Base.cs"
 "Assets/Scenes/Scripts/UI/UI_Button.cs"
+"Assets/Scenes/Scripts/UI/UI_EventHandler.cs"
 "Assets/Scenes/Scripts/Utils/Define.cs"
+"Assets/Scenes/Scripts/Utils/Extension.cs"
 "Assets/Scenes/Scripts/Utils/Util.cs"
 -langversion:9.0
 
